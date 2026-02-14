@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For Mansi 💍✨</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    text-align: center;
+    color: white;
+    overflow-x: hidden;
+    background: black;
+}
+
+/* Background Video */
+#bgVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -3;
+}
+
+/* Dark Overlay */
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: -2;
+}
+
+/* Intro Screen */
+#intro {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    text-align: center;
+    padding: 20px;
+    z-index: 10;
+    opacity: 1;
+    transition: opacity 2s ease;
+}
+
+/* Fade Animation */
+.fadeText {
+    animation: fadeSlow 4s ease-in-out;
+}
+
+@keyframes fadeSlow {
+    0% { opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+h1 {
+    margin-top: 80px;
+    font-size: 45px;
+}
+
+h2 {
+    font-size: 26px;
+}
+
+#countdown {
+    font-size: 22px;
+    margin: 20px 0;
+}
+
+/* Buttons */
+button {
+    padding: 14px 28px;
+    font-size: 18px;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin: 15px;
+    transition: 0.3s;
+}
+
+#yesBtn {
+    background: linear-gradient(45deg, #ff416c, #ff4b2b);
+    color: white;
+}
+
+#yesBtn:hover {
+    transform: scale(1.1);
+}
+
+#noBtn {
+    background-color: #555;
+    color: white;
+    position: absolute;
+}
+
+#message {
+    font-size: 26px;
+    margin-top: 20px;
+    min-height: 60px;
+}
+
+/* Ring Animation */
+.ring {
+    font-size: 80px;
+    animation: pop 0.8s ease forwards;
+}
+
+@keyframes pop {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+
+/* Fireworks */
+.firework {
+    position: fixed;
+    font-size: 25px;
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% { opacity: 1; transform: scale(0); }
+    100% { opacity: 0; transform: scale(3); }
+}
+
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    color: red;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(100vh); opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+}
+
+/* Aesthetic Text */
+.love-text {
+    font-size: 22px;
+    max-width: 700px;
+    margin: 20px auto;
+    line-height: 1.8;
+    color: #ffd6ec;
+    text-shadow: 0 0 10px rgba(255,105,180,0.6);
+}
+
+/* Glow Effect */
+.glow {
+    animation: glowEffect 2s infinite alternate;
+}
+
+@keyframes glowEffect {
+    from { text-shadow: 0 0 10px #ff4b2b; }
+    to { text-shadow: 0 0 25px #ff99cc; }
+}
+
+/* Photo Gallery */
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 40px 0;
+}
+
+.gallery img {
+    width: 220px;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255, 105, 180, 0.7);
+    transition: 0.4s;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+</style>
+</head>
+
+<body>
+
+<!-- INTRO SCREEN -->
+<div id="intro"></div>
+
+<!-- Background Video -->
+<video autoplay muted loop id="bgVideo">
+    <source src="mansii.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
+
+<!-- Romantic Song -->
+<audio autoplay loop>
+    <source src=""music type="audio/mpeg">
+</audio>
+
+<h1>Mansi 💖</h1>
+<h2>Will You Be My Valentine? 💍✨</h2>
+
+<p class="love-text glow">
+"You are not just my Valentine,<br>
+you are my favorite notification,<br>
+my calm in chaos,<br>
+my forever person 💞"
+</p>
+
+<div id="countdown"></div>
+
+<button id="yesBtn" onclick="yesFunction()">Yes 💘</button>
+<button id="noBtn" onmouseover="moveButton()">No 😢</button>
+
+<p id="message"></p>
+
+<!-- Photo Gallery -->
+<div class="gallery">
+    <img src="13d38e0753a224e806bb25b0a0dea38f.jpg.jpeg" alt="Memory 1">
+    <img src="99a091a01e1c286e88d168b85cab7533.jpg.jpeg" alt="Memory 2">
+    <img src="ec4d60d1c01b2a8bded6b00591e826bc.jpg.jpeg" alt="Memory 3">
+</div>
+
+<script>
+
+/* Cinematic Intro */
+let introTexts = [
+    "In a world...",
+    "Full of millions of people...",
+    "There was someone special...",
+    "Her name was...",
+    "Mansi 💖"
+];
+
+let introDiv = document.getElementById("intro");
+let index = 0;
+
+function showIntro() {
+    if (index < introTexts.length) {
+        introDiv.innerHTML = "<div class='fadeText'>" + introTexts[index] + "</div>";
+        index++;
+        setTimeout(showIntro, 4000);
+    } else {
+        introDiv.style.opacity = "0";
+        setTimeout(() => introDiv.style.display = "none", 2000);
+    }
+}
+showIntro();
+
+/* Countdown */
+var countDownDate = new Date("Feb 14, 2026 00:00:00").getTime();
+
+setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+    document.getElementById("countdown").innerHTML =
+        "Countdown 💕: " + days + "d " + hours + "h " + minutes + "m ";
+}, 1000);
+
+/* YES BUTTON */
+function yesFunction() {
+    document.getElementById("message").innerHTML =
+        "<div class='ring'>💍</div> Mansi 💕 I Promise To Love You Forever 🌹✨";
+
+    for (let i = 0; i < 30; i++) {
+        let firework = document.createElement("div");
+        firework.className = "firework";
+        firework.innerHTML = "🎆";
+        firework.style.left = Math.random() * 100 + "vw";
+        firework.style.top = Math.random() * 100 + "vh";
+        document.body.appendChild(firework);
+        setTimeout(() => firework.remove(), 1000);
+    }
+}
+
+/* NO BUTTON MOVE */
+function moveButton() {
+    var button = document.getElementById("noBtn");
+    button.style.top = Math.random() * window.innerHeight + "px";
+    button.style.left = Math.random() * window.innerWidth + "px";
+}
+
+/* Floating Hearts */
+setInterval(function() {
+    var heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 6000);
+}, 300);
+
+</script>
+
+</body>
+</html>
